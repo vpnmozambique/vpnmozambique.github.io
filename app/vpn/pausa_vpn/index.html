@@ -1,0 +1,561 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Pausa Vpn</title>
+    <base href="../../../" />
+    <link rel="stylesheet" href="./src/lib/flowbite.min.css" />
+    <script src="./src/lib/mode.js"></script>
+    <script src="./src/lib/htmx.min.js"></script>
+    <style type="text/css" media="all">
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body class="bg-white dark:bg-gray-900">
+    <div  class="">
+      <!-- Nav Bar -->
+
+      <nav
+        class="bg-white border-gray-200 dark:border-gray-600 dark:bg-gray-900 border-b"
+      >
+        <div
+          class="flex flex-wrap justify-between items-center mx-auto max-w-screen-xl p-4"
+        >
+          <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+            <img src="./public/vpn.png" class="h-8" alt="Vpn Moz Logo" />
+            <span
+              class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"
+              >Vpn Moz</span
+            >
+          </a>
+
+          <div class="flex gap-2.5">
+            <button
+              id="theme-toggle"
+              type="button"
+              class="text-gray-500 dark:text-gray-400 dark:bg-gray-800 bg-gray-200 rounded-lg text-sm p-2.5 block md:hidden"
+            >
+              <svg
+                id="theme-toggle-dark-icon"
+                class="hidden w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M17.293 13.293A8 8 0 11.707 2.707a8 8 0 0116.586 10.586zM10 18a8 8 0 007.464-4.665 9.949 9.949 0 01-1.664.185 8 8 0 01-5.8-2.346A8 8 0 0110 2a8 8 0 000 16z"
+                ></path>
+              </svg>
+              <svg
+                id="theme-toggle-light-icon"
+                class="hidden w-5 h-5"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M10 4.5a5.5 5.5 0 110 11 5.5 5.5 0 010-11zM10 2a1 1 0 000 2 1 1 0 000-2zm5.657 2.343a1 1 0 10-1.414-1.414 1 1 0 001.414 1.414zM18 10a1 1 0 100-2 1 1 0 000 2zm-2.343 5.657a1 1 0 101.414-1.414 1 1 0 00-1.414 1.414zM10 18a1 1 0 100-2 1 1 0 000 2zM4.343 17.657a1 1 0 101.414-1.414 1 1 0 00-1.414 1.414zM2 10a1 1 0 100-2 1 1 0 000 2zm2.343-5.657a1 1 0 10-1.414 1.414 1 1 0 001.414-1.414z"
+                ></path>
+              </svg>
+            </button>
+            <button
+              data-collapse-toggle="mega-menu-full-image"
+              type="button"
+              class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
+              aria-controls="mega-menu-full-image"
+              aria-expanded="false"
+            >
+              <span class="sr-only">Open main menu</span>
+              <svg
+                class="w-5 h-5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 17 14"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M1 1h15M1 7h15M1 13h15"
+                />
+              </svg>
+            </button>
+          </div>
+          <div
+            id="mega-menu-full-image"
+            class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1"
+          >
+            <ul
+              class="flex flex-col mt-4 font-medium md:flex-row md:mt-0 md:space-x-8 rtl:space-x-reverse"
+            >
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  aria-current="page"
+                  >Home</a
+                >
+              </li>
+
+              <li>
+                <button
+                  id="mega-menu-dropdown-button"
+                  data-dropdown-toggle="mega-menu-dropdown"
+                  class="flex items-center justify-between w-full py-2 px-3 font-medium text-gray-900 border-b border-gray-100 md:w-auto hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-600 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                >
+                  Vpn Disponíveis
+                  <svg
+                    class="w-2.5 h-2.5 ms-3"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 10 6"
+                  >
+                    <path
+                      stroke="currentColor"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="m1 1 4 4 4-4"
+                    />
+                  </svg>
+                </button>
+              </li>
+              <div
+                id="mega-menu-dropdown"
+                class="absolute z-10 grid hidden w-auto grid-cols-2 text-sm bg-white border border-gray-100 rounded-lg shadow-md dark:border-gray-700 md:grid-cols-3 dark:bg-gray-700"
+                hx-get="./src/components/VpnMenu.html"
+                hx-target="this"
+                hx-trigger="load"
+              ></div>
+
+              <li>
+                <a
+                  href="#"
+                  class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  >Contactos</a
+                >
+              </li>
+              <li>
+                <a
+                  href="#conceitos"
+                  class="block py-2 px-3 text-gray-900 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-blue-500 md:dark:hover:bg-transparent dark:border-gray-700"
+                  >Sobre</a
+                >
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+
+      <!-- Breadcrumb -->
+
+      <aside class="flex" aria-label="Breadcrumb">
+        <ol
+          class="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse pt-4 mx-4"
+        >
+          <li class="inline-flex items-center">
+            <a
+              href="#"
+              class="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600 dark:text-gray-400 dark:hover:text-white"
+            >
+              <svg
+                class="w-3 h-3 me-2.5"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor"
+                viewBox="0 0 20 20"
+              >
+                <path
+                  d="m19.707 9.293-2-2-7-7a1 1 0 0 0-1.414 0l-7 7-2 2a1 1 0 0 0 1.414 1.414L2 10.414V18a2 2 0 0 0 2 2h3a1 1 0 0 0 1-1v-4a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v4a1 1 0 0 0 1 1h3a2 2 0 0 0 2-2v-7.586l.293.293a1 1 0 0 0 1.414-1.414Z"
+                />
+              </svg>
+              Home
+            </a>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg
+                class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 9 4-4-4-4"
+                />
+              </svg>
+              <a
+                href="#"
+                class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"
+                >Vpn Moz</a
+              >
+            </div>
+          </li>
+          <li>
+            <div class="flex items-center">
+              <svg
+                class="rtl:rotate-180 w-3 h-3 text-gray-400 mx-1"
+                aria-hidden="true"
+                xmlns="http://www.w3.org/2000/svg"
+                fill="none"
+                viewBox="0 0 6 10"
+              >
+                <path
+                  stroke="currentColor"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="m1 9 4-4-4-4"
+                />
+              </svg>
+              <a
+                class="ms-1 text-sm font-medium text-gray-700 hover:text-blue-600 md:ms-2 dark:text-gray-400 dark:hover:text-white"
+                >Pausa Vpn</a
+              >
+            </div>
+          </li>
+        </ol>
+      </aside>
+
+      <article
+        class="grid max-w-screen-xl px-4 py-5 mx-auto text-gray-500 dark:text-gray-400 md:id-cols-3 md:px-6"
+      >
+        <div class="">
+          <h2 class="font-bold text-2xl mb-2 dark:text-white text-black">Pausa Vpn</h2>
+          <p class="mb-4">
+            PAUSA VPN é um aplicativo VPN que oferece recursos fáceis de usar e
+            garante uma navegação segura.
+          </p>
+        </div>
+
+        <div class="bg-gray-50 dark:bg-gray-800 py-6 rounded-lg mx-auto block my-4">
+          <h2 class="font-bold text-xl mb-2 text-center">Como configurar Pausa Vpn?</h2>
+          <p class="mb-4 text-center">
+            Antes de mais nada você precisa baixar este aplicativo na Google Play Store ou outra loja de aplicativos da sua preferência.Já Instalou? Óptimp
+            agora vamos continuar.
+          </p>
+        </div>
+
+        <!-- Primeiro passo -->
+
+        <div
+          class="space-y-8 md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center md:justify-center md:mt-6"
+        >
+          <h2 class="font-bold text-xl mb-2 md:hidden">
+            Passo 1 - Atualizar os Servidores
+          </h2>
+
+          <div
+            class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl mt-6 md:order-1"
+          >
+            <div
+              class="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"
+            ></div>
+            <div
+              class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"
+            ></div>
+            <div
+              class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"
+            ></div>
+            <div
+              class="h-[64px] w-[3px] bg-gray-800 absolute -end-[17px] top-[142px] rounded-e-lg"
+            ></div>
+            <div
+              class="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white dark:bg-gray-800"
+            >
+              <img
+                src="./public/images/passo1.png"
+                class="w-[272px] h-[572px]"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="md:order-2 col-span-2">
+            <h2 class="font-bold text-xl mb-2 hidden md:block">
+              Passo 1 - Atualizar os Servidores
+            </h2>
+            <p class="mb-4 max-w-2xl">
+              Atualize os servidores no aplicativo Pausa VPN para garantir uma
+              conexão segura e eficiente. Os servidores VPN podem ser alterados
+              ou atualizados periodicamente para oferecer melhor desempenho,
+              maior estabilidade e mais opções de internet grátis. Além disso,
+              atualizações frequentes ajudam a evitar bloqueios impostos por
+              provedores de internet ou serviços que tentam restringir o uso de
+              VPNs.
+            </p>
+          </div>
+                      <div 
+                class="grid md:grid-cols-2 gap-4 md:grid-rows-3">
+                        
+              <!-- Arquivos <-->
+              
+            </div>
+        </div>
+
+        <!-- Segundo passo -->
+
+        <div
+          class="space-y-8 md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center md:justify-center md:mt-6"
+        >
+          <h2 class="font-bold text-xl mb-2 block md:hidden">
+            Passo 2 - Escolher um Servidor
+          </h2>
+
+          <div
+            class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl mt-6 md:order-2"
+          >
+            <div
+              class="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"
+            ></div>
+            <div
+              class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"
+            ></div>
+            <div
+              class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"
+            ></div>
+            <div
+              class="h-[64px] w-[3px] bg-gray-800 absolute -end-[17px] top-[142px] rounded-e-lg"
+            ></div>
+            <div
+              class="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white dark:bg-gray-800"
+            >
+              <img
+                src="./public/images/passo1.png"
+                class="w-[272px] h-[572px]"
+                alt=""
+              />
+            </div>
+          </div>
+          <div class="md:order-1 col-span-2">
+            <h2 class="font-bold text-xl mb-2 hidden md:block">
+              Passo 2 - Escolher um Servidor
+            </h2>
+            <p class="mb-4 max-w-2xl">
+              Atualize os servidores no aplicativo Pausa VPN para garantir uma
+              conexão segura e eficiente. Os servidores VPN podem ser alterados
+              ou atualizados periodicamente para oferecer melhor desempenho,
+              maior estabilidade e mais opções de internet grátis. Além disso,
+              atualizações frequentes ajudam a evitar bloqueios impostos por
+              provedores de internet ou serviços que tentam restringir o uso de
+              VPNs.
+            </p>
+          </div>
+        </div>
+
+        <!-- Terceiro passo -->
+
+        <div
+          class="space-y-8 md:space-y-0 md:space-x-8 rtl:space-x-reverse md:flex md:items-center md:justify-center md:mt-6"
+        >
+          <h2 class="font-bold text-xl mb-2 md:hidden">
+            Passo 3 - Testar a conexão
+          </h2>
+
+          <div
+            class="relative mx-auto border-gray-800 dark:border-gray-800 bg-gray-800 border-[14px] rounded-[2.5rem] h-[600px] w-[300px] shadow-xl mt-6 md:order-1"
+          >
+            <div
+              class="w-[148px] h-[18px] bg-gray-800 top-0 rounded-b-[1rem] left-1/2 -translate-x-1/2 absolute"
+            ></div>
+            <div
+              class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[124px] rounded-s-lg"
+            ></div>
+            <div
+              class="h-[46px] w-[3px] bg-gray-800 absolute -start-[17px] top-[178px] rounded-s-lg"
+            ></div>
+            <div
+              class="h-[64px] w-[3px] bg-gray-800 absolute -end-[17px] top-[142px] rounded-e-lg"
+            ></div>
+            <div
+              class="rounded-[2rem] overflow-hidden w-[272px] h-[572px] bg-white dark:bg-gray-800"
+            >
+              <img
+                src="./public/images/passo1.png"
+                class="w-[272px] h-[572px]"
+                alt=""
+              />
+            </div>
+          </div>
+
+          <div class="md:order-2 col-span-2">
+            <h2 class="font-bold text-xl mb-2 hidden md:block">
+              Passo 3 - Testar a conexão
+            </h2>
+            <p class="mb-4 max-w-2xl">
+              Atualize os servidores no aplicativo Pausa VPN para garantir uma
+              conexão segura e eficiente. Os servidores VPN podem ser alterados
+              ou atualizados periodicamente para oferecer melhor desempenho,
+              maior estabilidade e mais opções de internet grátis. Além disso,
+              atualizações frequentes ajudam a evitar bloqueios impostos por
+              provedores de internet ou serviços que tentam restringir o uso de
+              VPNs.
+            </p>
+          </div>
+        </div>
+      </article>
+      
+      <!-- News Letter --> 
+      
+      <aside
+        class="p-4 mt-2 bg-white border border-gray-200 rounded-lg shadow-md sm:p-6 lg:p-8 dark:bg-gray-800 mx-4 text-center lg:mx-6 dark:border-gray-700"
+        aria-label="Subscribe to the Moz Vpn newsletter"
+      >
+        <h2
+          class="font-bold text-xl my-2 text-black text-center dark:text-white"
+        >
+          Interessado em um mundo mais amplo sobre Vpn e Internet Grátis?
+        </h2>
+        <p class="mb-5 text-sm font-medium text-gray-500 dark:text-gray-300">
+          A informação é fundamental quando se trata de manter a segurança na
+          Web. Assine a newsletter da Vpn Moz e receba as últimas dicas e
+          truques sobre vpn e internet grátis.
+        </p>
+        <form action="" min-width="400 500 600 700 800">
+          <div
+            data-style="clean"
+            class="flex items-center mb-3 justify-center flex-wrap"
+          >
+            <ul
+              class="formkit-alert formkit-alert-error"
+              data-element="errors"
+              data-group="alert"
+            ></ul>
+            <div
+              data-element="fields"
+              data-stacked="false"
+              class="flex items-center w-full max-w-md mb-3 seva-fields formkit-fields"
+            >
+              <div class="relative w-full mr-3 formkit-field">
+                <label
+                  for="member_email"
+                  class="hidden block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300"
+                  >Email address</label
+                >
+                <div
+                  class="absolute inset-y-0 left-0 flex items-center pl-3.5 pointer-events-none"
+                >
+                  <svg
+                    class="w-3.5 h-3.5 text-gray-500 dark:text-gray-400"
+                    aria-hidden="true"
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="currentColor"
+                    viewBox="0 0 20 16"
+                  >
+                    <path
+                      d="m10.036 8.278 9.258-7.79A1.979 1.979 0 0 0 18 0H2A1.987 1.987 0 0 0 .641.541l9.395 7.737Z"
+                    ></path>
+                    <path
+                      d="M11.241 9.817c-.36.275-.801.425-1.255.427-.428 0-.845-.138-1.187-.395L0 2.6V14a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V2.5l-8.759 7.317Z"
+                    ></path>
+                  </svg>
+                </div>
+                <input
+                  id="member_email"
+                  class="formkit-input bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                  name="email_address"
+                  aria-label="Email"
+                  placeholder="you@mail.com"
+                  required=""
+                  type="email"
+                />
+              </div>
+              <button data-element="submit" class="formkit-submit">
+                <div class="formkit-spinner">
+                  <div></div>
+                  <div></div>
+                  <div></div>
+                </div>
+                <span
+                  class="px-5 py-3 text-sm font-medium text-center text-white bg-blue-700 rounded-lg cursor-pointer hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+                  >Subscribe</span
+                >
+              </button>
+            </div>
+          </div>
+        </form>
+      </aside>
+
+      <!-- Footer  -->
+
+      <footer
+        hx-get="./src/components/Footer.html"
+        hx-target="this"
+        hx-trigger="load"
+        hx-on="htmx:afterSwap"
+        class="bg-white mt-8 dark:bg-gray-900 border-t border-gray-800 shadow-lg"
+      ></footer>
+    </div>
+    <script>
+      document.body.addEventListener("htmx:afterSwap", function (event) {
+        // Disparado após o conteúdo ser inserido no DOM.
+
+        const ano = new Date();
+        copiright = document.getElementById("copiright");
+        copiright.innerHTML = ano.getFullYear();
+      });
+
+      // Função para alternar o tem
+      const themeToggleBtn = document.getElementById("theme-toggle");
+      const themeToggleDarkIcon = document.getElementById(
+        "theme-toggle-dark-icon",
+      );
+      const themeToggleLightIcon = document.getElementById(
+        "theme-toggle-light-icon",
+      );
+
+      // Muda os ícones de acordo com o tema
+      if (
+        localStorage.getItem("color-theme") === "dark" ||
+        (!("color-theme" in localStorage) &&
+          window.matchMedia("(prefers-color-scheme: dark)").matches)
+      ) {
+        document.documentElement.classList.add("dark");
+        themeToggleLightIcon.classList.remove("hidden");
+      } else {
+        themeToggleDarkIcon.classList.remove("hidden");
+      }
+
+      themeToggleBtn.addEventListener("click", function () {
+        // Alterna os ícones
+        themeToggleDarkIcon.classList.toggle("hidden");
+        themeToggleLightIcon.classList.toggle("hidden");
+
+        // Se o usuário já selecionou um tema, usa isso
+        if (localStorage.getItem("color-theme")) {
+          if (localStorage.getItem("color-theme") === "light") {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          } else {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          }
+        } else {
+          // Se não, usa o tema do sistema
+          if (document.documentElement.classList.contains("dark")) {
+            document.documentElement.classList.remove("dark");
+            localStorage.setItem("color-theme", "light");
+          } else {
+            document.documentElement.classList.add("dark");
+            localStorage.setItem("color-theme", "dark");
+          }
+        }
+      });
+    </script>
+    <script src="./src/lib/flowbite.min.js"></script>
+  </body>
+</html>
+

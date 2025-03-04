@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Vpn Moz</title>
+    <link rel="stylesheet" href="./src/lib/flowbite.min.css" />
+    <script src="./src/lib/mode.js"></script>
+    <script src="./src/lib/htmx.min.js"></script>
+    <style type="text/css" media="all">
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+
+  <body class="bg-white dark:bg-gray-900">
+<div 
+  hx-get="https://vpnmoz.free.nf/proxy.php?url=https://vpnmoz.free.nf/src/components/Economize.html"
+  hx-target="this"
+  hx-trigger="load"
+></div>
+   <button 
+     hx-get="https://vpnmoz.free.nf/proxy.php?url=https://vpnmoz.free.nf/src/components/Economize.html"
+     hx-target="this"
+     hx-trigger="click"
+   >
+     Testar
+   </button>
+   
+   <p>Texto estático</p>
+   
+   <div 
+     hx-get="https://vpnmoz.free.nf/src/components/VpnDisponiveis.php"
+     hx-target="this"
+     hx-trigger="load"
+    >
+     
+   </div>
+
+<script>
+  fetch("https://vpnmoz.free.nf/src/components/Economize.html")
+  .then(response => response.text())
+  .then(html => console.log(html))
+  .catch(error => console.error("Erro ao buscar:", error));
+  
+</script>
+    <script src="./src/lib/flowbite.min.js"></script>
+  </body>
+</html>
